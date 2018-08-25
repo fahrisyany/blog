@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyBbCmL83kOJuWtp7bDgYdyRaXNWuEkV6uE",
+            authDomain: "myproject-2f196.firebaseapp.com",
+            databaseURL: "https://myproject-2f196.firebaseio.com",
+            projectId: "myproject-2f196",
+            storageBucket: "myproject-2f196.appspot.com",
+            messagingSenderId: "95687303892"
+        };
+        firebase.initializeApp(config);
+    </script>
+</head>
+
+<body>
+
+    <h2>HTML Forms</h2>
+
+    <form>
+        First name:
+        <br>
+        <input type="text" id="firstname" name="firstname" value="Mickey">
+
+        <input type="submit" value="Submit" onclick="submitData()">
+    </form>
+
+    <p>If you click the "Submit" button, the form-data will be sent to a page called "/action_page.php".</p>
+
+
+
+    <div id="list">
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+    <script>
+
+
+        function writeUserData(firstname) {
+            let userId = '001'
+            firebase.database().ref('users/' + userId).set({
+                firstname: firstname,
+
+            });
+        }
+
+        var starCountRef = firebase.database().ref('posts/' + postId + '/starCount');
+        starCountRef.on('value', function (snapshot) {
+            updateStarCount(postElement, snapshot.val());
+        });
+
+        function submitData() {
+            let firstname = document.getElementById('firstname').value
+
+            alert(firstname)
+        }
+    </script>
+
+
+
+
+
+
+</body>
+
+</html>
