@@ -35,6 +35,5 @@ List of routes about Articles and Comments:
 | **TDD**    | **Location**  |
 | ---------- | ------------- |
 | $ npm test | local mongoDB |
-
 | $ cd blog/server | Local |
 | $ mocha | Local |
