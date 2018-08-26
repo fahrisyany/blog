@@ -33,16 +33,8 @@ List of routes about Articles and Comments:
 | --------------- | ------------ |
 | $ npm run serve | Local        |
 
-<<<<<<< HEAD
 | **TDD**          | **Location**  |
 | ---------------- | ------------- |
 | $ npm test       | local mongoDB |
 | $ cd blog/server | Local         |
 | $ mocha          | Local         |
-=======
-| **TDD**    | **Location**  |
-| ---------- | ------------- |
-| $ npm test | local mongoDB |
-| $ cd blog/server | Local |
-| $ mocha | Local |
->>>>>>> 504a44786054146c09b544c7bf52a9a53b270102
