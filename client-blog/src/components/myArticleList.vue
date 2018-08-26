@@ -166,31 +166,30 @@ export default {
     },
     deleteArticle: function(index) {
       let ChoosenArticleId = this.listArticles[index]._id;
+      swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this Article!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true
+      }).then(willDelete => {
+        if (willDelete) {
+          this.listArticles.splice(index, 1);
+          swal("Poof! Your article file has been deleted!", {
+            icon: "success"
+          }).then(() => {
+            axios({
+              method: "DELETE",
+              url: `http://localhost:3000/users/deleteArticle/${ChoosenArticleId}`,
 
-      axios({
-        method: "DELETE",
-        url: `http://localhost:3000/users/deleteArticle/${ChoosenArticleId}`,
-
-        headers: {
-          token: localStorage.getItem("token")
-        }
-      }).then(() => {
-        swal({
-          title: "Are you sure?",
-          text: "Once deleted, you will not be able to recover this Article!",
-          icon: "warning",
-          buttons: true,
-          dangerMode: true
-        }).then(willDelete => {
-          if (willDelete) {
-            this.listArticles.splice(index, 1);
-            swal("Poof! Your article file has been deleted!", {
-              icon: "success"
+              headers: {
+                token: localStorage.getItem("token")
+              }
             });
-          } else {
-            swal("Your comment file is safe!");
-          }
-        });
+          });
+        } else {
+          swal("Your article file is safe!");
+        }
       });
     },
     launch: function() {

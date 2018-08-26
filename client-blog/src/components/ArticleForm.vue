@@ -135,31 +135,30 @@ export default {
     },
     deleteComment: function(index) {
       let ChoosenCommentId = this.articleComments[index]._id;
+      swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover your comment!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true
+      }).then(willDelete => {
+        if (willDelete) {
+          this.articleComments.splice(index, 1);
+          swal("Poof! Your comment has been deleted!, be mindfull next time!", {
+            icon: "success"
+          }).then(() => {
+            axios({
+              method: "DELETE",
+              url: `http://localhost:3000/users/deleteComment/${ChoosenCommentId}`,
 
-      axios({
-        method: "DELETE",
-        url: `http://localhost:3000/users/deleteComment/${ChoosenCommentId}`,
-
-        headers: {
-          token: localStorage.getItem("token")
-        }
-      }).then(() => {
-           swal({
-          title: "Are you sure?",
-          text: "Once deleted, you will not be able to recover your comment!",
-          icon: "warning",
-          buttons: true,
-          dangerMode: true
-        }).then(willDelete => {
-          if (willDelete) {
-            this.articleComments.splice(index, 1);
-            swal("Poof! Your comment has been deleted!, be mindfull next time!", {
-              icon: "success"
+              headers: {
+                token: localStorage.getItem("token")
+              }
             });
-          } else {
-            swal("Your comment  is safe!");
-          }
-        });
+          });
+        } else {
+          swal("Your comment  is safe!");
+        }
       });
     }
   },
