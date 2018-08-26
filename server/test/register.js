@@ -1,5 +1,7 @@
 const chai = require("chai");
 const expect = chai.expect;
+const mongoose = require("mongoose");
+const User = require("../models/user");
 
 const chaiHttp = require("chai-http");
 chai.use(chaiHttp);
@@ -7,23 +9,23 @@ chai.use(chaiHttp);
 
 
 describe("check registration", function() {
-  // after(function(done) {
-  //   mongoose.connect(
-  //     "mongodb://localhost:27017/test",
-  //     { useNewUrlParser: true },
-  //     function() {
-  //       User.collection.drop();
-  //       // User.remove({}, function() {});
-  //       done();
-  //     }
-  //   );
-  // });
+  after(function(done) {
+    mongoose.connect(
+      "mongodb://localhost:27017/test",
+      { useNewUrlParser: true },
+      function() {
+        User.collection.drop();
+        User.remove({}, function() {});
+        done();
+      }
+    );
+  });
 
   it("post /register should return registered user", function(done) {
     chai
       .request("http://localhost:3000")
       .post("/register")
-      .send({ username:"ade", password: "password", email: "user@gmail.com" })
+      .send({ username:"user", password: "password", email: "user@gmail.com" })
       .end(function(err, res) {
         console.log("Register========>>>", res.body);
         expect(err).to.be.null;

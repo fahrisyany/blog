@@ -9,7 +9,11 @@ const {
   showOneArticle
 } = require("../controllers/article");
 
-const { createComment, getComment,deleteComment } = require("../controllers/comment");
+const {
+  createComment,
+  getComment,
+  deleteComment
+} = require("../controllers/comment");
 const isLogin = require("../helpers/isLogin");
 
 /* GET home page. */
@@ -21,13 +25,12 @@ router
   .get("/showArticle", showArticle)
   .get("/getComment/:articleId", getComment)
   .get("/showOneArticle/:id", showOneArticle)
-  .get("/showOwnArticle", showOwnArticle)
-  .put("/editArticle/:id", editArticle)
-  .post("/createArticle", isLogin, createArticle)
+  .get("/showOwnArticle", isLogin, showOwnArticle)
+  .post("/createArticle", createArticle)
   .post("/createComment/:articleId", createComment)
+  .put("/editArticle/:id", editArticle)
   .delete("/deleteArticle/:id", deleteArticle)
-  .delete("/deleteComment/:id", deleteComment)
-
+  .delete("/deleteComment/:id", deleteComment);
 
 // .post("/login", login)
 
