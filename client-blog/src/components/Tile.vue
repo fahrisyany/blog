@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     getAllItem: function() {
-      axios.get("http://localhost:3000/users/showArticle").then(result => {
+      axios.get("http://35.240.198.229/users/showArticle").then(result => {
         //   console.log(result);
 
         result.data.article.forEach(newArticle => {

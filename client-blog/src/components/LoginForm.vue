@@ -60,7 +60,7 @@ export default {
     login: function() {
       axios({
         method: "POST",
-        url: "http://localhost:3000/login",
+        url: "http://35.240.198.229/login",
         data: {
           email: this.email,
           password: this.password
@@ -79,10 +79,8 @@ export default {
                 localStorage.username
               } feel free to write whatever you want!`
             );
-            this.$router.push("/");
+            this.$router.go("/");
           });
-
-          // window.location = "http://localhost:8080";
         })
         .catch(err => {
           swal("Ooops", "wrong username or password", "error");
@@ -93,6 +91,7 @@ export default {
         });
     }
   },
+
   created() {
     if (localStorage.token) {
       this.$router.go("/");

@@ -54,7 +54,7 @@ export default {
     createArticle: function() {
       axios({
         method: "POST",
-        url: "http://localhost:3000/users/createArticle",
+        url: "http://35.240.198.229/users/createArticle",
         data: {
           authorName: localStorage.username,
           articleTitle: this.articleTitle,

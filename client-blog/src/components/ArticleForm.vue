@@ -64,6 +64,7 @@
 
 <script>
 import axios from "axios";
+import swal from "sweetalert";
 
 export default {
   data: function() {
@@ -81,7 +82,7 @@ export default {
       // let ChoosenCommentId = this.listArticles[index]._id;
       let token = localStorage.getItem("token");
       axios
-        .get(`http://localhost:3000/users/showOneArticle/${this.articleId}`, {
+        .get(`http://35.240.198.229/users/showOneArticle/${this.articleId}`, {
           headers: {
             token
           }
@@ -101,7 +102,7 @@ export default {
     createComment: function() {
       axios({
         method: "POST",
-        url: `http://localhost:3000/users/createComment/${this.articleId}`,
+        url: `http://35.240.198.229/users/createComment/${this.articleId}`,
         data: {
           userName: localStorage.username,
           commentBody: this.commentBody
@@ -114,6 +115,7 @@ export default {
         .then(response => {
           let data = response.data.comment;
           this.articleComments.push(data);
+          this.commentBody=""
         })
         .catch(err => {
           this.message = err.message;
@@ -122,7 +124,7 @@ export default {
 
     getComments: function() {
       axios
-        .get(`http://localhost:3000/users/getComment/${this.articleId}`, {})
+        .get(`http://35.240.198.229/users/getComment/${this.articleId}`, {})
         .then(result => {
           this.articleComments = result.data.article;
           console.log(`===>`, this.articleComments);
@@ -149,7 +151,7 @@ export default {
           }).then(() => {
             axios({
               method: "DELETE",
-              url: `http://localhost:3000/users/deleteComment/${ChoosenCommentId}`,
+              url: `http://35.240.198.229/users/deleteComment/${ChoosenCommentId}`,
 
               headers: {
                 token: localStorage.getItem("token")

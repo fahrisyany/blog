@@ -63,7 +63,7 @@ export default {
     register: function() {
       axios({
         method: "POST",
-        url: "http://localhost:3000/register",
+        url: "http://35.240.198.229/register",
         data: {
           username: this.username,
           email: this.email,

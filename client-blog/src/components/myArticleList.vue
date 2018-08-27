@@ -78,6 +78,7 @@
 
 <script>
 import axios from "axios";
+import swal from "sweetalert";
 
 export default {
   data: function() {
@@ -99,11 +100,9 @@ export default {
     updateArticle: function() {
       axios({
         method: "PUT",
-        url: `http://localhost:3000/users/editArticle/${this.updateArticleId}`,
+        url: `http://35.240.198.229/users/editArticle/${this.updateArticleId}`,
         data: {
-          // authorName: localStorage.username,
           articleTitle: this.updateArticleTitle,
-          // articleTag: this.updateArticleBody,
           articleBody: this.updateArticleBody
         },
         headers: {
@@ -114,7 +113,8 @@ export default {
         .then(result => {
           this.oneArticle = result;
           swal("Article Updated", " ", "success").then(() => {
-            this.$router.go(`/account/${localStorage.username}`);
+            this.$router.push(`/account/${localStorage.username}`);
+            this.isActive = false;
           });
 
           this.message = "success";
@@ -128,7 +128,7 @@ export default {
     getOwnArticle: function() {
       let token = localStorage.getItem("token");
       axios
-        .get("http://localhost:3000/users/showOwnArticle", {
+        .get("http://35.240.198.229/users/showOwnArticle", {
           headers: {
             token
           }
@@ -145,7 +145,7 @@ export default {
 
       let token = localStorage.getItem("token");
       axios
-        .get(`http://localhost:3000/users/showOneArticle/${ChoosenArticleId}`, {
+        .get(`http://35.240.198.229/users/showOneArticle/${ChoosenArticleId}`, {
           headers: {
             token
           }
@@ -157,7 +157,6 @@ export default {
           this.updateArticleTitle = this.oneArticle[0].articleTitle;
           this.updateArticleBody = this.oneArticle[0].articleBody;
 
-          console.log(this.oneArticle[0]._id);
           // console.log(this.oneArticle[index].articleTitle);
         })
         .catch(err => {
@@ -180,7 +179,7 @@ export default {
           }).then(() => {
             axios({
               method: "DELETE",
-              url: `http://localhost:3000/users/deleteArticle/${ChoosenArticleId}`,
+              url: `http://35.240.198.229/users/deleteArticle/${ChoosenArticleId}`,
 
               headers: {
                 token: localStorage.getItem("token")
@@ -198,6 +197,10 @@ export default {
     close: function() {
       this.isActive = false;
     }
+  },
+
+  watch: {
+    listArticles: "getOwnArticle"
   },
 
   created() {

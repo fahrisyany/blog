@@ -27,17 +27,7 @@ export default new Router({
           path: "/:articleId",
           component: ArticleForm
         },
-        // {
-        //   path: "/login",
-        //   name: "login",
-
-        //   component: Login
-        // },
-        // {
-        //   path: "/register",
-        //   name: "register",
-        //   component: Register
-        // }
+ 
       ]
     },
 

@@ -18,11 +18,21 @@ import Hero from "@/components/Hero.vue";
 // import Tile from "@/components/Tile.vue";
 
 export default {
+  data: function() {
+    return {
+      token: localStorage.token,
+      username: localStorage.username
+    };
+  },
 
   components: {
-    Hero,
-    // Tile
+    Hero
   },
+
+  watch: {
+    // token
+  },
+
   created() {
     this.token = localStorage.getItem("token");
     this.username = localStorage.getItem("username");

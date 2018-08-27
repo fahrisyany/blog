@@ -83,11 +83,17 @@ export default {
       this.username = undefined;
     }
   },
-  created() {
-    if (localStorage.token) {
-      this.token = localStorage.getItem("token");
-      this.username = localStorage.getItem("username");
-    }
-  }
+
+  watch: {
+    token: localStorage.getItem("token"),
+    username: localStorage.getItem("username")
+  },
+
+  // created() {
+  //   if (localStorage.token) {
+  //     this.token = localStorage.getItem("token");
+  //     this.username = localStorage.getItem("username");
+  //   }
+  // }
 };
 </script>

@@ -23,7 +23,7 @@ describe("check registration", function() {
 
   it("post /register should return registered user", function(done) {
     chai
-      .request("http://localhost:3000")
+      .request("http://:3000")
       .post("/register")
       .send({ username:"user", password: "password", email: "user@gmail.com" })
       .end(function(err, res) {
